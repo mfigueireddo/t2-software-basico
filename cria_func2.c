@@ -59,21 +59,16 @@ void cria_func (void* f, DescParam params[], int n, unsigned char codigo[]){
                 // movl %valorRdi, %valorRegistradorCorrespondente
                 // Move o valor do parâmetro recebido para o registrador
 
-                // movq -?(%rbp), %rax
-                *codigo++ = 0x48;
+                // movl
                 *codigo++ = 0x8b;
-                *codigo++ = 0x45;
 
                 if (param_lidos == 0) *codigo++ = 0xf8; // Se for primeiro parâmetro na nova função (-8)
                 else if (param_lidos == 1) *codigo++ = 0xf0; // Se for segundo parâmetro na nova função (-16)
                 else if (param_lidos == 2) *codigo++ = 0xe8; // Se for terceiro parâmetro na nova função (-24)
 
-                // movl
-                *codigo++ = 0x89;
-
-                if (i == 0) *codigo++ = 0xc7; // Se for o primeiro parâmetro na função origem (%rax), %edi
-                else if (i == 1) *codigo++ = 0xc6; // Se for o segundo parâmetro na função origem (%rax), %esi
-                else if (i == 2) *codigo++ = 0xc2; // Se for o terceiro parâmetro na função origem (%rax), %edx
+                if (i == 0) *codigo++ = 0x7d; // Se for o primeiro parâmetro na função origem %edi
+                else if (i == 1) *codigo++ = 0x75; // Se for o segundo parâmetro na função origem %esi
+                else if (i == 2) *codigo++ = 0x55; // Se for o terceiro parâmetro na função origem %edx
 
                 // Atualiza o número de parâmetros lidos da nova função
                 param_lidos++;
