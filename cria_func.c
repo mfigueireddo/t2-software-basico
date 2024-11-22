@@ -169,7 +169,7 @@ void cria_func (void* f, DescParam params[], int n, unsigned char codigo[]){
             // Se o parâmetro for fixo
             else if (params[i].orig_val == FIX){
                 
-                // *params[i].valor.vlr_ptr = %valorRegistrador
+                // params[i].valor.vlr_ptr = %valorRegistrador
                 // Move o valor do ponteiro em params para o registrador
 
                 // Move o valor imediatamente depois para %rax
@@ -180,17 +180,18 @@ void cria_func (void* f, DescParam params[], int n, unsigned char codigo[]){
                 *(unsigned long*)codigo = (unsigned long)params[i].valor.v_ptr;
                 codigo += sizeof(unsigned long*);
 
-                // movl
-                *codigo++ = 0x8b;
+                // movq
+                *codigo++ = 0x48;
+                *codigo++ = 0x89;
 
                 // Se for o primeiro parâmetro na função origem
-                if (i == 0) *codigo++ = 0x38; // (%rax), %edi
+                if (i == 0) *codigo++ = 0xc7; // %rax, %rdi
 
                 // Se for o segundo parâmetro na função origem
-                if (i == 1) *codigo++ = 0x30; // (%rax), %esi
+                if (i == 1) *codigo++ = 0xc6; // %rax, %rsi
 
                 // Se for o terceiro parâmetro na função origem
-                if (i == 2) *codigo++ = 0x10; // (%rax), %edx
+                if (i == 2) *codigo++ = 0xc2; // %rax, %rdx
             }
             
             // Se o parâmetro estiver no endereço de memória especificado no parâmetro

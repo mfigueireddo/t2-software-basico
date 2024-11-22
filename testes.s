@@ -2,6 +2,7 @@
 .text
 
 testes:
-    movl %eax, %edi
-    movl %eax, %esi
-    movl %eax, %edx
+    movq %rax, %rdi
+    movq %rax, %rsi
+    movq %rax, %rdx
+    
