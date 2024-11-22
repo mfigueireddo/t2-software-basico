@@ -2,4 +2,5 @@
 .text
 
 testes:
-    movl (%rax), %edi
+    movq %rdx, %rdi
+    movq %rdx, %rsi

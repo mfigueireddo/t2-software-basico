@@ -26,6 +26,10 @@ int main (void) {
   cria_func (memcmp, params, 3, codigo);
   mesmo_prefixo = (func_ptr) codigo;
 
+  for(int i=0; i<500; i++){
+    printf("%02x ", codigo[i]);
+  }
+
   tam = 12;
   printf ("'%s' tem mesmo prefixo-%d de '%s'? %s\n", s, tam, fixa, mesmo_prefixo (s, tam)?"NAO":"SIM");
   tam = strlen(s);
