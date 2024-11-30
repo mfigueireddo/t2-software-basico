@@ -1,10 +1,10 @@
+/* Matheus Moreira da Silva Figueiredo 2320813 3WA*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "cria_func.h"
 
-// Arrumar os códigos de exit
-// Supondo que só exista um parâmetro variável
 void cria_func (void* f, DescParam params[], int n, unsigned char codigo[]){
    
     // Se forem recebidos mais parâmetros que o permitido
